@@ -1,0 +1,30 @@
+{
+  "name": "helt",
+  "version": "1.0.0",
+  "description": "Helt pwa game",
+  "main": "public/index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "html5",
+    "canvas",
+    "game",
+    "pwa",
+    "crawler",
+    "roguelike"
+  ],
+  "author": "Trym Nilsen",
+  "license": "MIT",
+  "devDependencies": {
+    "css-loader": "^2.1.1",
+    "jest": "^24.7.1",
+    "live-server": "^1.2.1",
+    "ts-jest": "^24.0.2",
+    "ts-loader": "^5.4.4",
+    "tslint": "^5.16.0",
+    "typescript": "^3.4.5",
+    "webpack": "^4.30.0",
+    "webpack-cli": "^3.3.1"
+  }
+}

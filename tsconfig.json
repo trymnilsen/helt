@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "target": "es2018",
+    "module": "commonjs",
+    "sourceMap": true,
+    "declaration": false,
+    "rootDir": "./ts",
+    "strictFunctionTypes": true,
+    "noImplicitReturns": true,
+    "noImplicitAny": true,
+    "noImplicitThis": true,
+    "removeComments": false,
+    "experimentalDecorators": true,
+    "esModuleInterop": true,
+    "noEmitOnError": true,
+    "outDir": "./build/client/"
+  },
+  "include": ["ts/src/**/*.ts"]
+}
