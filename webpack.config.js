@@ -2,7 +2,7 @@ const path = require("path");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
-  entry: "./ts/src/client/main.ts",
+  entry: "./ts/src/main.ts",
   mode: "development",
   devtool: "source-map",
   stats: {
@@ -17,10 +17,7 @@ module.exports = {
       {
         test: /\.ts?$/,
         use: {
-          loader: "ts-loader",
-          options: {
-            configFile: "tsconfig-client.json"
-          }
+          loader: "ts-loader"
         },
         exclude: /node_modules/
       },
@@ -41,9 +38,6 @@ module.exports = {
   output: {
     filename: "bundle.js",
     path: path.resolve(__dirname, "public/dist")
-  },
-  externals: {
-      konva: "Konva"
   },
   plugins: [
     new MiniCssExtractPlugin({

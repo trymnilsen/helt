@@ -4,7 +4,8 @@
   "description": "Helt pwa game",
   "main": "public/index.html",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "http": "live-server --verbose --entry-file=index.html --wait=500 --no-browser --no-css-inject public/"
   },
   "keywords": [
     "html5",
@@ -20,6 +21,7 @@
     "css-loader": "^2.1.1",
     "jest": "^24.7.1",
     "live-server": "^1.2.1",
+    "mini-css-extract-plugin": "^0.6.0",
     "ts-jest": "^24.0.2",
     "ts-loader": "^5.4.4",
     "tslint": "^5.16.0",
