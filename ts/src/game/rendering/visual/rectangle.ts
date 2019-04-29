@@ -1,6 +1,6 @@
-import { RenderNode, NodeConfiguration } from "./renderNode";
-import { RenderContext } from "../renderContext";
+import { RenderNode, NodeConfiguration } from "../renderNode";
 import { Camera } from "../camera";
+import { RenderContext } from "../renderContext";
 
 export interface RectangleConfiguration extends NodeConfiguration {
     width: number;
@@ -16,9 +16,9 @@ export class Rectangle extends RenderNode {
         super(config);
         this.config = config;
     }
-    public render(context: CanvasRenderingContext2D, camera: Camera): void {
-        let rx = this.absolutePosition.x + camera.position.x;
-        let ry = this.absolutePosition.y + camera.position.y;
+    public render(context: RenderContext): void {
+        let rx = this.absolutePosition.x + context.camera.position.x;
+        let ry = this.absolutePosition.y + context.camera.position.y;
         let rw = this.config.width;
         let rh = this.config.height;
         //Handle stroke if defined
@@ -32,15 +32,15 @@ export class Rectangle extends RenderNode {
             //Create the stroke (which is actually a larger rectangle drawn
             //behind our fill rectangle)
             const color = this.config.strokeColor || "black";
-            context.fillStyle = color;
-            context.fillRect(
-                this.absolutePosition.x + camera.position.x,
-                this.absolutePosition.y + camera.position.y,
+            context.canvas.fillStyle = color;
+            context.canvas.fillRect(
+                this.absolutePosition.x + context.camera.position.x,
+                this.absolutePosition.y + context.camera.position.y,
                 this.config.width,
                 this.config.height
             );
         }
-        context.fillStyle = this.config.color;
-        context.fillRect(rx, ry, rw, rh);
+        context.canvas.fillStyle = this.config.color;
+        context.canvas.fillRect(rx, ry, rw, rh);
     }
 }

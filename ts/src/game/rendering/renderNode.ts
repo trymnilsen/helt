@@ -1,6 +1,5 @@
-import { RenderContext } from "../renderContext";
-import { Point, addPoint } from "../../../../common/data/point";
-import { Camera } from "../camera";
+import { Point, addPoint } from "../../structure/point";
+import { RenderContext } from "./renderContext";
 
 export interface NodeConfiguration {
     x: number;
@@ -12,7 +11,6 @@ export class RenderNode {
     public position: Point;
     public depth: number;
     public parent: RenderNode;
-    public _context: RenderContext;
     private _absolutePosition: Point;
     private _children: RenderNode[] = [];
     public constructor(nodeConfig?: NodeConfiguration) {
@@ -23,7 +21,7 @@ export class RenderNode {
             this.depth = nodeConfig.depth || this.depth;
         }
     }
-    public render(context: CanvasRenderingContext2D, camera: Camera): void {}
+    public render(context: RenderContext): void {}
     public addChild(child: RenderNode) {
         this._children.push(child);
         child.parent = this;
@@ -39,18 +37,7 @@ export class RenderNode {
         }
         this._children.splice(childIndex, 1);
     }
-    public get context(): RenderContext {
-        if (!!this._context) {
-            return this._context;
-        } else if (!!this.parent) {
-            return this.parent.context;
-        } else {
-            return null;
-        }
-    }
-    public set context(value: RenderContext) {
-        this._context = value;
-    }
+
     public get children(): Readonly<RenderNode[]> {
         return this._children;
     }

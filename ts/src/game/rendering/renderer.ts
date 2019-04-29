@@ -1,10 +1,16 @@
+import { RenderNode } from "./renderNode";
+import { Event } from "../../event/event";
+import { RenderContext } from "./renderContext";
+import { Camera } from "./camera";
+import { rgbToHex } from "../../color";
+import { AssetCache } from "./assetCache";
 export class Renderer {
-    private canvasContext: CanvasRenderingContext2D;
-    private renderingContext: RenderContext;
-    private _rootNode: RenderNode;
     public onRender: Event<any>;
 
-    public constructor(canvasElementId: string) {
+    private canvasContext: CanvasRenderingContext2D;
+    private _rootNode: RenderNode;
+    private renderContext: RenderContext;
+    public constructor(canvasElementId: string, assetCache: AssetCache) {
         const canvasElement: HTMLCanvasElement = document.querySelector(
             `#${canvasElementId}`
         );
@@ -24,15 +30,14 @@ export class Renderer {
             }
         });
         this.onRender = new Event();
-        this.renderingContext = new RenderContext();
-        this.renderingContext.camera.positionUpdated.listen(() => {
-            this.render();
-        });
         this.canvasContext = canvasElement.getContext("2d");
         this.canvasContext.canvas.width = window.innerWidth;
         this.canvasContext.canvas.height = window.innerHeight;
+        this.renderContext = {
+            canvas: this.canvasContext,
+            camera: new Camera()
+        };
         this._rootNode = new RenderNode();
-        this._rootNode.context = this.renderingContext;
     }
 
     public render() {
@@ -54,7 +59,7 @@ export class Renderer {
     private renderItems(renderList: RenderNode[]) {
         for (let index = 0; index < renderList.length; index++) {
             const element = renderList[index];
-            element.render(this.canvasContext, this.renderingContext.camera);
+            element.render(this.renderContext);
         }
     }
 
@@ -74,9 +79,6 @@ export class Renderer {
         );
     }
 
-    public get context(): RenderContext {
-        return this.renderingContext;
-    }
     public get rootNode(): RenderNode {
         return this._rootNode;
     }
