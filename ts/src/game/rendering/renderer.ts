@@ -3,7 +3,7 @@ import { Event } from "../../event/event";
 import { RenderContext } from "./renderContext";
 import { Camera } from "./camera";
 import { rgbToHex } from "../../color";
-import { AssetCache } from "./assetCache";
+import { AssetCache } from "../../asset/assetCache";
 export class Renderer {
     public onRender: Event<any>;
 
@@ -35,7 +35,8 @@ export class Renderer {
         this.canvasContext.canvas.height = window.innerHeight;
         this.renderContext = {
             canvas: this.canvasContext,
-            camera: new Camera()
+            camera: new Camera(),
+            assetCache: assetCache
         };
         this._rootNode = new RenderNode();
     }

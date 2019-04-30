@@ -10,7 +10,6 @@ The json file format helps define the sprite, with things like origin and a id o
 format
 ```
 {
-    "id":"mysupersprite",
     "origin": {
         x: 32,
         y: 27
@@ -20,8 +19,9 @@ format
 
 ## Bundle assets
 
-To bundle assets run `npm run bundle-assets` this will
+To bundle assets run `npm run pack-assets` this will
 - Load all files and json info for each file
 - Generate a single spritesheet for all assets
 - Concatinate json data
 - Write a generated typescript file containing contatinated json data and position data for where in the spritesheet the asset is located
+

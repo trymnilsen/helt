@@ -2,7 +2,7 @@ import { Renderer } from "./rendering/renderer";
 import { JsonTree } from "../storage/jsonNode";
 import { GameSceneHandler } from "./gameScene";
 import { WorldSceneName, WorldScene } from "./scene/world/worldScene";
-import { AssetCache } from "./rendering/assetCache";
+import { AssetCache } from "../asset/assetCache";
 
 export class Game {
     private renderer: Renderer;
@@ -18,10 +18,11 @@ export class Game {
             WorldSceneName,
             new WorldScene(this.renderer.rootNode, this.state)
         );
-        this.gameSceneHandler.transition(WorldSceneName);
     }
-    public load() {
-        return this.assetCache.load(["/asset/img/grass_tile4x.png"]);
+    public async load() {
+        await this.assetCache.load();
+        this.gameSceneHandler.transition(WorldSceneName);
+        this.renderer.render();
     }
     public dispose() {}
 }

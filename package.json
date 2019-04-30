@@ -4,7 +4,8 @@
   "description": "Helt pwa game",
   "main": "public/index.html",
   "scripts": {
-    "bundle-assets": "node tool/spritepacker.js",
+    "pack-assets": "node tools/spritepacker.js",
+    "watch-pack-assets": "nodemon --watch assets tools/spritepacker.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "http": "live-server --verbose --entry-file=index.html --wait=500 --no-browser --no-css-inject public/"
   },
@@ -19,10 +20,14 @@
   "author": "Trym Nilsen",
   "license": "MIT",
   "devDependencies": {
+    "canvas": "^2.4.1",
     "css-loader": "^2.1.1",
+    "image-size": "^0.7.4",
     "jest": "^24.7.1",
     "live-server": "^1.2.1",
+    "maxrects-packer": "^2.0.2",
     "mini-css-extract-plugin": "^0.6.0",
+    "nodemon": "^1.18.11",
     "ts-jest": "^24.0.2",
     "ts-loader": "^5.4.4",
     "tslint": "^5.16.0",

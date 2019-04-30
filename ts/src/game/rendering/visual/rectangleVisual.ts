@@ -10,7 +10,7 @@ export interface RectangleConfiguration extends NodeConfiguration {
     strokeColor?: string;
 }
 
-export class Rectangle extends RenderNode {
+export class RectangleVisual extends RenderNode {
     private config: RectangleConfiguration;
     public constructor(config: RectangleConfiguration) {
         super(config);

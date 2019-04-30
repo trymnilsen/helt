@@ -2,6 +2,7 @@ import { EventHandle } from "../../../event/event";
 import { RenderNode } from "../../rendering/renderNode";
 import { JsonTree } from "../../../storage/jsonNode";
 import { GameScene } from "../../gameScene";
+import { ImageVisual } from "../../rendering/visual/imageVisual";
 
 export const WorldSceneName = "world";
 export class WorldScene implements GameScene {
@@ -11,6 +12,12 @@ export class WorldScene implements GameScene {
     public constructor(rootNode: RenderNode, state: JsonTree) {
         this.rootRenderNode = rootNode;
         this.state = state;
+        const testImage = new ImageVisual({
+            x: 200,
+            y: 200,
+            image: "grass_tile4x"
+        });
+        this.rootRenderNode.addChild(testImage);
     }
     public transitionTo(): void {}
     public dispose(): void {
